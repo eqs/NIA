@@ -2,6 +2,12 @@ function display_results(dataFolder, fileNames, idx, i, rst, finalAngLen, flagIs
 
 inputImg = imread([dataFolder '/' fileNames(idx).name]);
 fileNames(idx).name
+
+% Expand the single channel image to the multi channel image
+if ndims(inputImg) == 2
+    inputImg = repmat(inputImg, 1, 1, 3);
+end
+
 inputImg = inputImg(:,:,2);
 inputImg1 = double(inputImg);
 inputImg = inputImg1/(max(inputImg1(:)));
